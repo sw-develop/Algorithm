@@ -9,6 +9,6 @@ public class main_1029{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     double val = Double.parseDouble(br.readLine());
-    System.out.printf("%.11lf", val);
+    System.out.printf("%.11f", val);
   }
 }

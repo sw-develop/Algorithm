@@ -2,3 +2,4 @@
 ./CodeUp/*.class
 ./EPPER/*.class
 *.class
+./BOJ/*/*.class

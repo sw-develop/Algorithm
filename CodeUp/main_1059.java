@@ -17,7 +17,10 @@ class main_1059{
   public static void main(String[] args) throws Exception{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    System.out.printf("%d", ~Integer.parseInt(br.readLine()));
+    System.out.printf("%d\n", ~Integer.parseInt(br.readLine()));
+
+    int val = Integer.parseInt(br.readLine());
+    System.out.println(val);
 
 
   }

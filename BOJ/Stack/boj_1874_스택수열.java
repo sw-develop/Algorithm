@@ -12,10 +12,10 @@ public class boj_1874_스택수열{
     int[] array; //순열 저장 배열
     int[] stackCheck; //push, pop 저장 배열
     
-    Stack<Integer> s = new Stack<Integer>();
+    Stack<Integer> s = new Stack<Integer>(); //스택 인스턴스 생성
 
     int i=0;
-    int p1=1; //추가되는 수 진행 표시
+    int p1=1; //추가되는 수 진행 표시 
     int p2=1; //array 진행 표시
     int p3=0; //stackCheck 진행 표시
     int val; //pop된 값 저장
@@ -74,4 +74,5 @@ public class boj_1874_스택수열{
     }
     else System.out.println("NO");
   }
+
 }

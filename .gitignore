@@ -3,3 +3,4 @@
 ./EPPER/*.class
 *.class
 ./BOJ/*/*.class
+./Study/*/*.class

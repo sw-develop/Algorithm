@@ -4,3 +4,4 @@
 *.class
 ./BOJ/*/*.class
 ./Study/*/*.class
+./Study/*/*.out

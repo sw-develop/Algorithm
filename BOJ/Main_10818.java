@@ -1,22 +1,25 @@
-import java.util.Scanner;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.util.StringTokenizer;
 
 public class Main_10818 {
-  public static void main(String[] args){
-    Scanner kbd = new Scanner(System.in);
+  public static void main(String[] args) throws Exception{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    int count = kbd.nextInt();
+    int count = Integer.parseInt(br.readLine());
 
-    //최대 최소 초기화
-    int max = kbd.nextInt();
+    StringTokenizer st = new StringTokenizer(br.readLine(), " "); 
+
+    int max = Integer.parseInt(st.nextToken());
     int min = max;
     int val = 0;
 
-    for(int i = 1; i<count; i++){
-      val = kbd.nextInt();
+    while(st.hasMoreTokens()){
+      val = Integer.parseInt(st.nextToken());
       if(val > max) max = val;
       else if(val < min) min = val;
     }
 
-    System.out.printf("%d %d", max, min);
-  }
+    System.out.printf("%d %d", min, max);
+}
 }

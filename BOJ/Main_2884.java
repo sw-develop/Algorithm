@@ -1,24 +1,22 @@
 //사용자료구조 : 문자열 처리 
 import java.io.*;
-import java.util.*;
 
 public class Main_2884{
-  public static void main(String[] args){
+  public static void main(String[] args) throws Exception{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+    String[] arr = br.readLine().split(" ");
 
-    int hour = Integer.parseInt(st.nextToken());
-    int minute = Integer.parseInt(st.nextToken());
+    int hour = Integer.parseInt(arr[0]);
+    int minute = Integer.parseInt(arr[1]);
 
     int time = minute - 45; //45분 전 
 
-    if(time >= 0){ 
+    if(time >= 0){ //시가 바뀌지 않을 때 
       minute = time;
     }
-    else{
-      if(hour == 0) hour = 23;
-      else hour--;
+    else{ //시가 바뀔 때 
+      hour = (hour==0 ? 23 : hour-1); //삼항연산자 
       minute = 60 + time;
     }
 

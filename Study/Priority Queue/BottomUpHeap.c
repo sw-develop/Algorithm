@@ -42,6 +42,17 @@ void buildHeap() //주어진 배열을 heap이라고 가정하고 heap의 부모
     downHeap(i); //부모 노드의 Index 전달 
 }
 
+/*재귀적 상향식 힙 생성*/
+void rBuildHeap(int i)
+{
+  if(i > _Heap.n) return;
+  if(i*2 <= _Heap.n) //자식이 존재할 때
+    rBuildHeap(i*2);
+  if(i*2 <= _Heap.n)
+    rBuildHeap(i*2+1); //자식이 존재할 때
+  downHeap(i);
+}
+
 /*제자리 정렬 - 오름차순*/
 int removeMax()
 {
@@ -84,7 +95,8 @@ void main()
   for(int i =1; i <= _Heap.n; i++)
     _Heap.H[i] = rand() % 100 + 1;
   printHeap(); 
-  buildHeap(); //상향식 힙 생성 
+  //buildHeap(); //상향식 힙 생성 
+  rBuildHeap(1);
   printHeap();
 
   printf("제자리 정렬 수행\n");

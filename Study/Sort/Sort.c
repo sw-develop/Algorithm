@@ -72,7 +72,7 @@ void shell_sort(int list[], int n){
 }
 
 //5.합병정렬 
-//원리) 분할정복방식
+//원리) 분할정복방식 (균등분할)
 //시간복잡도) O(n*logn)
 //단점) 추가공간필요(sorted[])
 void merge(int list[], int left, int mid, int right){
@@ -100,12 +100,35 @@ void merge_sort(int list[], int left, int right){
     merge_sort(list, mid+1, right);
     merge(list, left, mid, right);
   }
+}
 
+//6.퀵정렬
+//원리) 분할정복방식 (비균등분할)
+//시간보잡도) 균등분할 시 : O(n*logn) / 극도로 비균등분할 시 : O(n^2)
+int partition(int list[], int left, int right){ //left : 정렬할 부분리스트의 처음 index, right : 정렬할 부분리스트의 마지막 index
+  int pivot = list[left]; //현재 가장 첫 번째 값을 pivot으로 설정
+  int temp, low, high;
+  low = left;
+  high = right+1;
+  do{
+    do
+      low++;
+    while(list[low] > pivot); //pivot보다 큰 값 찾을 때까지 반복
+    do 
+      high--;
+    while(list[high] < pivot); //pivot보다 작은 값을 찾을 때까지 반복 
+  }while(low < high);
+  SWAP(list[left], list[high], temp);
+  return high; //pivot의 최종위치 반환 -> 더이상 위치 바뀌지 않음
+}
 
-
-
-
-  
+void quick_sort(int list[], int left, int right){
+  if(left < right)
+  {
+    int p = partition(list, left, right); //pivot의 최종 위치 반환
+    quick_sort(list, left, p-1);
+    quick_sort(list, p+1, right);
+  }
 }
 
 

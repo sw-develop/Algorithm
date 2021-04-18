@@ -75,7 +75,7 @@ void shell_sort(int list[], int n){
 //원리) 분할정복방식 (균등분할)
 //시간복잡도) O(n*logn)
 //단점) 추가공간필요(sorted[])
-void merge(int list[], int left, int mid, int right){
+void merge(int list[], int left, int mid, int right){ //->다항식 덧셈이랑 원리 똑같음! 
   int i, j, k; //i, j : 반으로 분할된 두 리스트의 시작 Index, k : merge된 new list의 index
   i = left; j = mid+1; k = left; 
   while(i<=mid && j<=right){
@@ -102,9 +102,11 @@ void merge_sort(int list[], int left, int right){
   }
 }
 
-//6.퀵정렬
+//6.퀵정렬 
 //원리) 분할정복방식 (비균등분할)
 //시간보잡도) 균등분할 시 : O(n*logn) / 극도로 비균등분할 시 : O(n^2)
+
+//6-1. 기준원소가 배열의 첫 번째 원소일 때
 int partition(int list[], int left, int right){ //left : 정렬할 부분리스트의 처음 index, right : 정렬할 부분리스트의 마지막 index
   int pivot = list[left]; //현재 가장 첫 번째 값을 pivot으로 설정
   int temp, low, high;
@@ -113,11 +115,15 @@ int partition(int list[], int left, int right){ //left : 정렬할 부분리스�
   do{
     do
       low++;
-    while(list[low] > pivot); //pivot보다 큰 값 찾을 때까지 반복
+    while(list[low] < pivot); //pivot보다 큰 값 찾을 때까지 반복
     do 
       high--;
-    while(list[high] < pivot); //pivot보다 작은 값을 찾을 때까지 반복 
+    while(list[high] > pivot); //pivot보다 작은 값을 찾을 때까지 반복
+    
+    if(low < high)
+      SWAP(list[low], list[high], temp);     
   }while(low < high);
+  
   SWAP(list[left], list[high], temp);
   return high; //pivot의 최종위치 반환 -> 더이상 위치 바뀌지 않음
 }
@@ -126,6 +132,42 @@ void quick_sort(int list[], int left, int right){
   if(left < right)
   {
     int p = partition(list, left, right); //pivot의 최종 위치 반환
+    quick_sort(list, left, p-1);
+    quick_sort(list, p+1, right);
+  }
+}
+
+//6.2 기준원소가 배열의 무작위 원소일 때
+int partition(int list[], int left, int right, int k){ //left : 정렬할 부분리스트의 처음 index, right : 정렬할 부분리스트의 마지막 index
+  int temp, low, high;
+
+  int pivot = list[k]; //무작위로 선정된 원소를 pivot으로 설정 
+  SWAP(list[right], lisk[k], temp); //선정된 원소를 배열의 마지막 원소와 위치 교환
+
+  low = left-1;
+  high = right;
+
+  do{
+    do
+      low++;
+    while(list[low] < pivot); //pivot보다 큰 값 찾을 때까지 반복
+    do 
+      high--;
+    while(list[high] > pivot); //pivot보다 작은 값을 찾을 때까지 반복 
+
+    if(low < high)
+      SWAP(list[low], list[high], temp);
+  }while(low < high);
+
+  SWAP(list[right], list[low], temp);
+  return low; //pivot의 최종위치 반환 -> 더이상 위치 바뀌지 않음
+}
+
+void quick_sort(int list[], int left, int right){
+  if(left < right)
+  {
+    int k = rand() % (right - left + 1) + left; //리스트의 Index left~right 중 무작위로 1개 고른 값 
+    int p = partition(list, left, right, k); //pivot의 최종 위치 반환, k : 기준원소의 index 
     quick_sort(list, left, p-1);
     quick_sort(list, p+1, right);
   }

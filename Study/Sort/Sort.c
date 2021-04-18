@@ -131,6 +131,37 @@ void quick_sort(int list[], int left, int right){
   }
 }
 
+//7.기수정렬
+//원리) 레코드 간의 비교없이 분배식으로 정렬(분류하기)
+//장점) 비교에 의한 정렬의 하한인 O(n*logn)보다 좋을 수 있음 
+//시간복잡도) O(dn)
+//추가적인 공간(bucket) 필요 -> 이때 bucket은 큐로 구현(FIFO)
+
+#define BUCKETS 10
+#define DIGITS 4
+
+/*Queue 구현 코드 필요함*/
+
+void radix_sort(int list[], int n){
+  int i, b, d, factor = 1;
+  QueueTypes queues[BUCKETS]; //Bucket의 개수만큼 큐 필요
+
+  for(b=0; b<BUCKETS; b++) init_queue(&queues[b]); //큐 초기화
+
+  for(d=0; d<DIGITS; d++) //총 자릿수 만큼 반복(낮은 자리 수부터)
+  {
+    //1. 원소들을 자리수에 따라 큐에 입력
+    for(i=0; i<n; i++)
+      enqueue(&queues[(list[i]/factor)%10], list[i]);
+    //2. 버킷에서 하나씩 꺼내어 list 재구성 
+    for(b=i=0; b<BUCKETS; b++)
+      while(!isempty(&queues[b]))
+        list[i++] = dequeue(&queues[b]);
+    //3. 분류할 자릿수 증가시키기  
+    factor *= 10;
+  }
+}
+
 
 int main(void) {
 	int list[MAX_SIZE];

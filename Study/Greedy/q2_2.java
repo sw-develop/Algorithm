@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class q2_Stream {
+public class q2_2 {
 
 	public static void main(String[] args) {
 		Scanner kbd = new Scanner(System.in);

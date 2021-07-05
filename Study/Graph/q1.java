@@ -30,7 +30,7 @@ public class Main {
 				int y = startVertexCol + dy[i]; //col -> y는 열임! 
 				
 				if(x != -1 && x != mapRowSize && y != -1 && y != mapColSize) { //x좌표 -> col, y좌표 -> row 
-					if(iceMap[x][y] == 0) {
+					if(iceMap[x][y] == hole) {
 						rowQueue.offer(x);
 						colQueue.offer(y); 
 						iceMap[x][y] = visited; 

@@ -37,21 +37,23 @@ class Result {
             x = p.x;
             y = p.y;
             
+            //현재 위치에서 상하좌우로의 이동 위치 확인 
             for(int i = 0; i < dx.length; i++) {
                 int nx = x + dx[i];
                 int ny = y + dy[i];
                 
-                if(nx < 0 || nx >= charMap.length || ny < 0 || ny >= charMap[0].length) continue; //Map의 범위를 벗어난 경우 
-                if(charMap[nx][ny] == blocked) continue; //막힌 cell인 경우  
-                else {
-                    if(intMap[nx][ny] == 0){ //방문한 적이 없을 때 
-                        intMap[nx][ny] = intMap[x][y] + 1; //가중치 증가 
-                        queue.offer(new Pair(nx, ny)); //enqueue 
-                    }  
-                }
+      			//이동 위치 및 원소값이 조건을 만족하는지 확인
+            //1. Map의 범위를 벗어난 경우 
+            if(nx < 0 || nx >= charMap.length || ny < 0 || ny >= charMap[0].length) continue; 
+            //2. 막힌 Cell인 경우 
+            if(charMap[nx][ny] == blocked) continue;
+            //3. 해당 Cell을 처음 방문하는 경우 
+         		if(intMap[nx][ny] == 0){ 
+                    intMap[nx][ny] = intMap[x][y] + 1; //가중치 증가 
+                    queue.offer(new Pair(nx, ny)); //enqueue 
+                }    
             }
-        }    
-            
+        }         
         return intMap[charMap.length-1][charMap[0].length-1]; //도착 지점의 가중치 반환 
     }
 

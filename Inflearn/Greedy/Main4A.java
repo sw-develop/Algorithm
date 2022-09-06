@@ -17,37 +17,39 @@ class Schedule implements Comparable<Schedule> {
 
 public class Main4A {
 
-  public static int solution(int N, List<Schedule> input) {
+  static int N, max = Integer.MIN_VALUE;
+  
+  public static int solution(List<Schedule> input) {
     int output = 0;
 
-    Collections.sort(input);
     PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+    Collections.sort(input);
 
-    int day = -1;
-    for (Schedule s : input) {
-      if (day == -1) {
-        day = s.D;
+    int k = 0;
+    for (int i = max; i >= 1; i--) {
+      for (int j = k; j < N; j++) {
+        if (input.get(j).D < i) {
+          k = j;
+          break;
+        }
+        pq.offer(input.get(j).M);
       }
-      if (day == s.D) {
-        pq.offer(s.M);
-      } else {
-        output += pq.poll();
-        day = s.D;
-        pq.offer(s.D);
-      }
+      if (!pq.isEmpty()) output += pq.poll();
     }
-    output += pq.poll();
 
     return output;
   }
 
   public static void main(String[] args) {
     Scanner kbd = new Scanner(System.in);
-    int N = kbd.nextInt();
+    N = kbd.nextInt();
     List<Schedule> input = new ArrayList<>();
     for (int i = 0; i < N; i++) {
-      input.add(new Schedule(kbd.nextInt(), kbd.nextInt()));
+      int M = kbd.nextInt();
+      int D = kbd.nextInt();
+      input.add(new Schedule(M,D));
+      max = Math.max(max, D);
     }
-    System.out.println(solution(N, input));
+    System.out.println(solution(input));
   }
 }

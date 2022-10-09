@@ -1,3 +1,5 @@
+//백준 2504
+
 import java.util.*;
 import java.io.*;
 

@@ -1,4 +1,4 @@
-// 모든 인접한 ()는 반드시 레이저
+//백준 10799
 
 import java.io.*;
 import java.util.*;

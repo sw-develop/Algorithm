@@ -8,13 +8,15 @@ public class Main1B {
   static int[] arr;
 
   public static void solution(int k) { // k - 선택한 숫자 개수
+    // 재귀 종료
     if (k == M) {
-      for (int i = 0; i < M; i++)
+      for (int i = 0; i < M; i++) // 출력값 처리
         ans.append(arr[i]).append(' ');
       ans.append('\n');
       return;
     }
 
+    // 재귀 수행
     int st = 1; // 시작 숫자, k = 0일 때 st = 1
     if (k != 0)
       st = arr[k - 1] + 1;
@@ -38,8 +40,8 @@ public class Main1B {
 
 /*
  * 
- * 문제 회고 
-
+ * 문제 회고
+ * 
 - dfs를 위한 상태트리 구상 
 - dfs 기준을 '선택한 숫자 개수'로 설정할 수 있음
  * 

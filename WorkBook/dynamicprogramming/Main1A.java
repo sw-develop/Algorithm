@@ -1,9 +1,5 @@
 //BOJ 1003
 
-//풀이과정
-//점화식 정의
-//N까지의 0 출력 횟수, 1 출력 횟수 구한 뒤 배열로 접근
-
 import java.util.*;
 import java.io.*;
 
@@ -34,3 +30,11 @@ public class Main1A {
     System.out.println(sb);
   }
 }
+
+/* 문제회고
+
+풀이과정
+- 점화식 정의
+- N까지의 0 출력 횟수, 1 출력 횟수 구한 뒤 배열로 접근
+
+*/

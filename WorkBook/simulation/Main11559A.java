@@ -6,18 +6,20 @@ public class Main11559A {
   static char[][] map = new char[12][6];
   static int answer = 0;
 
+  static boolean isPuyo = false;
+
   static int[] dx = {-1, 1, 0, 0}; //상하좌우
   static int[] dy = {0, 0, -1, 1}; 
-  
+
+  // bfs 탐색 기반으로 같은 색의 뿌요를 터뜨리는 함수
   public static boolean check(int i, int j) {
-    List<int[]> list = new LinkedList<>();
+    List<int[]> list = new LinkedList<>(); //연결된 뿌요가 4개 이상인 경우 터뜨릴 뿌요 위치 저장
 
     boolean[][] visited = new boolean[12][6];
-    
     Queue<int[]> q = new LinkedList<>();
     q.offer(new int[]{i, j});
     visited[i][j] = true;
-    while (!q.isEmpty()) { //BFS 수행
+    while (!q.isEmpty()) {
       int[] arr = q.poll();
       int x = arr[0];
       int y = arr[1];
@@ -42,7 +44,7 @@ public class Main11559A {
 
   public static boolean isPop() {
     //조건
-    //같은 색 뿌요가 4개 이상 상하좌우로 연결 => 연결된 뿌요가 4개 이상이면 pop?!
+    //같은 색 뿌요가 4개 이상 상하좌우로 연결 => 연결된 뿌요가 4개 이상이면 터뜨림
     boolean isAvailable = false;
     for (int i = 0; i < 12; i++) {
       for (int j = 0; j < 6; j++) {
@@ -55,6 +57,7 @@ public class Main11559A {
     return isAvailable;
   }
 
+  // 뿌요 내리는 함수
   public static void down() {
     //열 기준 한 줄씩 내리기 수행
     for (int j = 0; j < 6; j++) {
@@ -97,3 +100,10 @@ public class Main11559A {
     System.out.println(answer);
   }
 }
+
+/* 문제 회고
+
+- bfs 탐색 시 방문 처리 주의
+- 시뮬레이션 유형의 경우 문제의 조건에 맞는 함수 구성 잘하기
+
+*/
